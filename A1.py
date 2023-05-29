@@ -1,3 +1,9 @@
+import sys
+
+if len(sys.argv) == 2:
+    output = sys.argv[1]
+else:
+    output = ""
 log = "log.txt"
 list = []
 time_list = []
@@ -31,11 +37,21 @@ for i in list:
         exec("recov_time = {} + '-'".format(dic[i] + "_time"))
         time_list.append([i,recov_time])
 
-for i in time_list:
-    if i[1].split("-")[1] != "":
-        end = " until " + i[1].split("-")[1] + "."
-    else:
-        end = "."
-    print(i[0]  + ": out of order from " + i[1].split("-")[0] + end)
+if output == "":
+    for i in time_list:
+        if i[1].split("-")[1] != "":
+            end = " until " + i[1].split("-")[1] + "."
+        else:
+            end = "."
+        print(i[0]  + ": out of order from " + i[1].split("-")[0] + end)
+
+else:
+    with open(output,'w') as f:
+        for i in time_list:
+            if i[1].split("-")[1] != "":
+                end = " until " + i[1].split("-")[1] + ".\n"
+            else:
+                end = ".\n"
+            f.write(i[0]  + ": out of order from " + i[1].split("-")[0] + end)
 
 
