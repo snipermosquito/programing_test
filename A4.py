@@ -145,6 +145,8 @@ if output == "":
         print(i[0]  + ": under heavy load from " + i[1].split("-")[0] + end)
     print("[subnet malfunction]")
     for i in sn_time_list:
+        l = 4 - len(i[0].split("."))
+        i[0] += ".x"*l
         if i[1].split("-")[1] != "":
             end = " until " + i[1].split("-")[1] + ". " + i[2]
         else:
@@ -168,6 +170,8 @@ else:
             f.write(i[0]  + ": under heavy load from " + i[1].split("-")[0] + end)
         f.write("[subnet malfanction]\n")
         for i in sn_time_list:
+            l = 4 - len(i[0].split("."))
+            i[0] += ".x"*l
             if i[1].split("-")[1] != "":
                 end = " until " + i[1].split("-")[1] + ". " + i[2] + "\n"
             else:
