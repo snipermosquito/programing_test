@@ -42,9 +42,9 @@
   
 ## Q4. サブネットの故障期間を追加で出力
 　フォルダ内にlog.txtを設置した状態でA4.pyを実行する. Q3と同様に故障判定回数 N 、過負荷状態判定に用いる回数 m 及び平均応答時間 t をsysモジュールのargvを用いてコマンドライン引数として、「python A4.py N m t」の形で渡す. <br/>　 <br />
-　Example: python A4.py 2 3 100 <br /> <br />
+　Example: python A4.py 2 2 100 <br /> <br />
 　これまでと同様にファイル名を渡すことで結果の書き出しが可能である. <br /> <br />
-　Example: python A4.py 2 3 100 A4.out <br /> <br />
+　Example: python A4.py 2 2 100 A4.out <br /> <br />
 　上の例では A4.out に結果が書き出される.
 ### 出力について
   A3.pyと同様、初めにサーバーの故障についての確認結果が [timeout] の表示に続いて出力された後、過負荷状態の期間が [overload] の表示に続いて出力される. <br />
