@@ -103,6 +103,7 @@ if output == "":
         print(i[0]  + ": under heavy load from " + i[1].split("-")[0] + end)
 else:
     with open(output,'w') as f:
+        f.write("N = " + str(N) + ", m = " + str(m) + ", t = " + str(t) + "\n")
         f.write("[timeout]\n")
         for i in time_list:
             if i[1].split("-")[1] != "":

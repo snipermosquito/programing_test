@@ -127,6 +127,17 @@ for i in list:
     if check:
         exec("ol_recov_time = {} + '-'".format(dic[i] + "_ol_time"))
         ol_time_list.append([i,ol_recov_time])
+    exec("tmp_list = {}".format(sn_dic[sn]))
+    exec("sn_E_check = {}".format(sn_dic[sn] + "_check"))
+    if sn_E_check:
+        exec("{} = False".format(sn_dic[sn] + "_check"))
+        sn_start_list = []
+        for i in tmp_list:
+            i += "_time"
+            exec("sn_start_list.append(int({}))".format(i))
+        max = str(max(sn_start_list))
+        recov_time = max + '-'
+        sn_time_list.append([sn,recov_time])
 
 if output == "":
     print("[timeout]")
@@ -154,6 +165,7 @@ if output == "":
         print(i[0]  + ": faulty subnet from " + i[1].split("-")[0] + end)
 else:
     with open(output,'w') as f:
+        f.write("N = " + str(N) + ", m = " + str(m) + ", t = " + str(t) + "\n")
         f.write("[timeout]\n")
         for i in time_list:
             if i[1].split("-")[1] != "":

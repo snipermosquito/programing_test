@@ -58,6 +58,7 @@ if output == "":
         print(i[0]  + ": out of order from " + i[1].split("-")[0] + end)
 else:
     with open(output,'w') as f:
+        f.write("N = " + str(N) + "\n")
         for i in time_list:
             if i[1].split("-")[1] != "":
                 end = " until " + i[1].split("-")[1] + ". " + i[2] +"\n"
