@@ -1,6 +1,6 @@
 # Programming Test 
 
-programming language:Python3.8<br />
+プログラミング言語はPython3.8を使用した.<br />
 フォルダ内に各設問に対応するプログラム(A1.py, A2.py, A3.py, A4.py)及び、読み込み対象とする監視ログファイル(log.txt)を置いて実行する. <br />
 
 ## Q1. 故障状態のサーバアドレスとそのサーバの故障期間を出力
