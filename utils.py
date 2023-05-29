@@ -10,4 +10,4 @@ def time_calc(time12):
   dt1 = datetime.datetime(year=year1, month=int(time1_sp[2]), day=int(time1_sp[3]), hour=int(time1_sp[4]),minute=int(time1_sp[5]),second=int(time1_sp[6]))
   dt2 = datetime.datetime(year=year2, month=int(time2_sp[2]), day=int(time2_sp[3]), hour=int(time2_sp[4]),minute=int(time2_sp[5]),second=int(time2_sp[6]))
   dt = dt2 - dt1
-  return(dt)
+  return("(" + str(dt) + ")")
