@@ -39,9 +39,10 @@ for line in lines:
         if line.split(",")[2].strip() != "-":
             exec("{} = False".format(toc_dic[line.split(",")[1]]))
             exec("recov_time = {} + '-' + str(line.split(',')[0])".format(dic[line.split(",")[1]] + "_time"))
+            dt = utils.time_calc(recov_time)
             exec("c_var = {}".format(c_dic[line.split(",")[1]]))
             if c_var >= N:
-                time_list.append([line.split(",")[1],recov_time])
+                time_list.append([line.split(",")[1],recov_time,dt])
             exec("{} = 0".format(c_dic[line.split(",")[1]]))
         else:
             exec("{} += 1".format(c_dic[line.split(",")[1]]))
@@ -71,7 +72,8 @@ for line in lines:
                 if check:
                     exec("{} = False".format(olc_dic[line.split(",")[1]]))
                     exec("ol_recov_time = {} + '-' + str(line.split(',')[0])".format(dic[line.split(",")[1]] + "_ol_time"))
-                    ol_time_list.append([line.split(",")[1],ol_recov_time])
+                    dt = utils.time_calc(ol_recov_time)
+                    ol_time_list.append([line.split(",")[1],ol_recov_time,dt])
         exec("{}.pop(0)".format(ol_dic[line.split(',')[1]]))
 for i in list:
     exec("var = {}".format(toc_dic[i]))
@@ -87,14 +89,14 @@ if output == "":
     print("[timeout]")
     for i in time_list:
         if i[1].split("-")[1] != "":
-            end = " until " + i[1].split("-")[1] + "."
+            end = " until " + i[1].split("-")[1] + ". " + i[2]
         else:
             end = "."
         print(i[0]  + ": out of order from " + i[1].split("-")[0] + end)
     print("[overload]")
     for i in ol_time_list:
         if i[1].split("-")[1] != "":
-            end = " until " + i[1].split("-")[1] + "."
+            end = " until " + i[1].split("-")[1] + ". " + i[2]
         else:
             end = "."
         print(i[0]  + ": under heavy load from " + i[1].split("-")[0] + end)
@@ -103,14 +105,14 @@ else:
         f.write("[timeout]\n")
         for i in time_list:
             if i[1].split("-")[1] != "":
-                end = " until " + i[1].split("-")[1] + ".\n"
+                end = " until " + i[1].split("-")[1] + ". " + i[2] + "\n"
             else:
                 end = ".\n"
             f.write(i[0]  + ": out of order from " + i[1].split("-")[0] + end)
         f.write("[overload]\n")
         for i in ol_time_list:
             if i[1].split("-")[1] != "":
-                end = " until " + i[1].split("-")[1] + ".\n"
+                end = " until " + i[1].split("-")[1] + ". " + i[2] + "\n"
             else:
                 end = ".\n"
             f.write(i[0]  + ": under heavy load from " + i[1].split("-")[0] + end)
