@@ -1,6 +1,8 @@
-def time_calc(time1,time2)
+def time_calc(time12)
   import re
   import datetime
+  time1 = time12.split("-")[0]
+  time2 = time12.split("-")[1]
   time1_sp = re.split('(..)',time1)[1::2]
   time2_sp = re.split('(..)',time2)[1::2]
   year1 = int(time1_sp[0]+time1_sp[1])
