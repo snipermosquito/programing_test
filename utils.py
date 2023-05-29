@@ -1,4 +1,4 @@
-def time_calc(time12)
+def time_calc(time12):
   import re
   import datetime
   time1 = time12.split("-")[0]
