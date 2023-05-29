@@ -1,29 +1,11 @@
-def def_var():
-  global log
-  log = "log.txt"
-  global list
-  list = []
-  global time_list
-  time_list = []
-  global ol_time_list
-  ol_time_list = []
-  global sn_time_list
-  sn_time_list = []
-  global sn_list
-  sn_list = []
-  global dic
-  dic = {}
-  global toc_dic
-  toc_dic = {}
-  global c_dic
-  c_dic = {}
-  global ol_dic
-  ol_dic = {}
-  global olc_dic
-  olc_dic = {}
-  global sn_dic
-  sn_dic = {}
-  global num
-  num = 0
-  global sn_num
-  sn_num = 0
+def time_calc(time1,time2)
+  import re
+  import datetime
+  time1_sp = re.split('(..)',time1)[1::2]
+  time2_sp = re.split('(..)',time2)[1::2]
+  year1 = int(time1_sp[0]+time1_sp[1])
+  year2 = int(time2_sp[0]+time2_sp[1])
+  dt1 = datetime.datetime(year=year1, month=int(time1_sp[2]), day=int(time1_sp[3]), hour=int(time1_sp[4]),minute=int(time1_sp[5]),second=int(time1_sp[6]))
+  dt2 = datetime.datetime(year=year2, month=int(time2_sp[2]), day=int(time2_sp[3]), hour=int(time2_sp[4]),minute=int(time2_sp[5]),second=int(time2_sp[6]))
+  dt = dt2 - dt1
+  return(dt)
