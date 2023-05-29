@@ -35,8 +35,8 @@ programming language:Python3.8<br />
 　上の例では A3.out に結果が書き出される.
 ### 出力について
   初めにサーバの故障についての確認結果が [timeout] の表示に続いてA2.pyの場合と同様に出力される. <br />
-　次に過負荷状態の期間が [overload] の表示に続いて出力される. 直近 m 回の平均応答時間が t ミリ秒を超えた場合を過負荷状態とみなし、過負荷状態のサーバ【server address】について、過負荷状態が検出された時から数えて m-1 回前の確認日時を{date&time1}、過負荷状態の解消が確認された日時を{date&time2}として、 <br />
- 「{server address}: under heavy load from {date&time1} until {date&time2}.」 <br />
+　次に過負荷状態の期間が [overload] の表示に続いて出力される. 直近 m 回の平均応答時間が t ミリ秒を超えた場合を過負荷状態とみなし、過負荷状態のサーバ【server address】について、過負荷状態が検出された時から数えて m-1 回前の確認日時を{date&time1}、過負荷状態の解消が確認された日時を{date&time2}として、 <br /> <br />
+ 「{server address}: under heavy load from {date&time1} until {date&time2}.」 <br /> <br />
  の形式で出力される. ただし、実行時点で過負荷状態の解消が確認されていない場合、until以下は表示されない. <br />
   
 ## Q4. サブネットの故障期間を追加で出力
