@@ -53,6 +53,13 @@ for line in lines:
         if not dic[line.split(",")[1]] in tmp_list:
             exec("{}.append(dic[line.split(',')[1]])".format(sn_dic[sn]))
         num += 1
+for line in lines:
+    if line.isspace():
+        break
+    sn = ""
+    npf = int(line.split(",")[1].split("/")[1])
+    for i in range(0,math.ceil(npf/8)):
+        sn = (sn + "." +  line.split(",")[1].split(".")[i]).strip(".")
     exec("var = {}".format(toc_dic[line.split(",")[1]]))
     if var:
         if line.split(",")[2].strip() != "-":
@@ -74,12 +81,13 @@ for line in lines:
     if sn_E_check:
         if line.split(",")[2].strip() != "-":
             exec("{} = False".format(sn_dic[sn] + "_check"))
-            sn_start_list = []
+            sn_max = 0
             for i in tmp_list:
                 i += "_time"
-                exec("sn_start_list.append(int({}))".format(i))
-            max = str(max(sn_start_list))
-            recov_time = max + '-' + str(line.split(',')[0])
+                exec("sn_tmp_time = int({})".format(i))
+                if sn_max < sn_tmp_time:
+                        sn_max = sn_tmp_time
+            recov_time = str(sn_max) + '-' + str(line.split(',')[0])
             dt = utils.time_calc(recov_time)
             sn_time_list.append([sn,recov_time,dt])
     else:
@@ -131,12 +139,13 @@ for i in list:
     exec("sn_E_check = {}".format(sn_dic[sn] + "_check"))
     if sn_E_check:
         exec("{} = False".format(sn_dic[sn] + "_check"))
-        sn_start_list = []
+        sn_max = 0
         for i in tmp_list:
             i += "_time"
-            exec("sn_start_list.append(int({}))".format(i))
-        max = str(max(sn_start_list))
-        recov_time = max + '-'
+            exec("sn_tmp_time = int({})".format(i))
+            if sn_max < sn_tmp_time:
+                sn_max = sn_tmp_time
+        recov_time = str(sn_max) + '-'
         sn_time_list.append([sn,recov_time])
 
 if output == "":
