@@ -27,7 +27,8 @@ for line in lines:
         if line.split(",")[2].strip() != "-":
             exec("{} = False".format(toc_dic[line.split(",")[1]]))
             exec("recov_time = {} + '-' + str(line.split(',')[0])".format(dic[line.split(",")[1]] + "_time"))
-            time_list.append([line.split(",")[1],recov_time])
+            dt = utils.time_calc(recov_time)
+            time_list.append([line.split(",")[1],recov_time,dt])
     elif line.split(",")[2].strip() == "-":
         exec("{} = True".format(toc_dic[line.split(",")[1]]))
         exec("{} = line.split(',')[0]".format(dic[line.split(',')[1]] + '_time'))
@@ -40,7 +41,7 @@ for i in list:
 if output == "":
     for i in time_list:
         if i[1].split("-")[1] != "":
-            end = " until " + i[1].split("-")[1] + "."
+            end = " until " + i[1].split("-")[1] + ". " + i[2]
         else:
             end = "."
         print(i[0]  + ": out of order from " + i[1].split("-")[0] + end)
@@ -49,7 +50,7 @@ else:
     with open(output,'w') as f:
         for i in time_list:
             if i[1].split("-")[1] != "":
-                end = " until " + i[1].split("-")[1] + ".\n"
+                end = " until " + i[1].split("-")[1] + ". " + i[2] + "\n"
             else:
                 end = ".\n"
             f.write(i[0]  + ": out of order from " + i[1].split("-")[0] + end)
