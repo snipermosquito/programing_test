@@ -1,5 +1,9 @@
 import sys
 
+if len(sys.argv) == 5:
+    output = sys.argv[4]
+else:
+    output = ""
 N = int(sys.argv[1])
 m =int(sys.argv[2])
 t = int(sys.argv[3])
@@ -79,17 +83,35 @@ for i in list:
     if check:
         exec("ol_recov_time = {} + '-'".format(dic[i] + "_ol_time"))
         ol_time_list.append([i,ol_recov_time])
-print("[timeout]")
-for i in time_list:
-    if i[1].split("-")[1] != "":
-        end = " until " + i[1].split("-")[1] + "."
-    else:
-        end = "."
-    print(i[0]  + ": out of order from " + i[1].split("-")[0] + end)
-print("[overload]")
-for i in ol_time_list:
-    if i[1].split("-")[1] != "":
-        end = " until " + i[1].split("-")[1] + "."
-    else:
-        end = "."
-    print(i[0]  + ": under heavy load from " + i[1].split("-")[0] + end)
+if output == "":
+    print("[timeout]")
+    for i in time_list:
+        if i[1].split("-")[1] != "":
+            end = " until " + i[1].split("-")[1] + "."
+        else:
+            end = "."
+        print(i[0]  + ": out of order from " + i[1].split("-")[0] + end)
+    print("[overload]")
+    for i in ol_time_list:
+        if i[1].split("-")[1] != "":
+            end = " until " + i[1].split("-")[1] + "."
+        else:
+            end = "."
+        print(i[0]  + ": under heavy load from " + i[1].split("-")[0] + end)
+else:
+    with open(output,'w') as f:
+        f.write("[timeout]")
+        for i in time_list:
+            if i[1].split("-")[1] != "":
+                end = " until " + i[1].split("-")[1] + ".\n"
+            else:
+                end = ".\n"
+            f.write(i[0]  + ": out of order from " + i[1].split("-")[0] + end)
+        f.write("[overload]")
+        for i in ol_time_list:
+            if i[1].split("-")[1] != "":
+                end = " until " + i[1].split("-")[1] + ".\n"
+            else:
+                end = ".\n"
+            f.write(i[0]  + ": under heavy load from " + i[1].split("-")[0] + end)
+    
