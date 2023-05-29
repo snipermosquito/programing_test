@@ -100,14 +100,14 @@ if output == "":
         print(i[0]  + ": under heavy load from " + i[1].split("-")[0] + end)
 else:
     with open(output,'w') as f:
-        f.write("[timeout]")
+        f.write("[timeout]\n")
         for i in time_list:
             if i[1].split("-")[1] != "":
                 end = " until " + i[1].split("-")[1] + ".\n"
             else:
                 end = ".\n"
             f.write(i[0]  + ": out of order from " + i[1].split("-")[0] + end)
-        f.write("[overload]")
+        f.write("[overload]\n")
         for i in ol_time_list:
             if i[1].split("-")[1] != "":
                 end = " until " + i[1].split("-")[1] + ".\n"
