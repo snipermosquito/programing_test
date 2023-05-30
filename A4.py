@@ -159,7 +159,7 @@ for line in new_lines:
         exec("{} = False".format(end_check + "_check"))
         if min == 99999999999999:
             max_min = str(max) + "-"
-            sn_time_list.append([sn,max-min])
+            sn_time_list.append([sn,max_min])
         else:
             max_min = str(max) + "-" + str(min)
             dt = utils.time_calc(max_min)
