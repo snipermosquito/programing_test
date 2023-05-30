@@ -88,37 +88,30 @@ for i in list:
         exec("ol_recov_time = {} + '-'".format(dic[i] + "_ol_time"))
         ol_time_list.append([i,ol_recov_time])
     
-list = []
 new_lines = []
 sn_time_list = []
 sn_list = []
-dic = {}
+sv_dic = {}
 sn_dic = {}
-num = 0
 sn_num = 0
-with open(log,'r') as f:
-    lines = f.readlines()
-for line in lines:
-    if line.isspace():
-        break
+num = 0
+for line in list:
     sn = ""
-    npf = int(line.split(",")[1].split("/")[1])
+    npf = int(line.split("/")[1])
     for i in range(0,math.ceil(npf/8)):
-        sn = (sn + "." +  line.split(",")[1].split(".")[i]).strip(".")
-    if not line.split(",")[1] in list:
-        if not sn in sn_list:
-            sn_list.append(sn)
-            sn_dic[sn] = "No" + str(sn_num)
-            exec("{} = False".format(sn_dic[sn] + "_check"))
-            exec("{} = []".format(sn_dic[sn]))
-            sn_num += 1
-        list.append(line.split(",")[1])
-        dic[line.split(",")[1]] = sn_dic[sn] + "_" + str(num)
-        exec("{} = False".format(dic[line.split(",")[1]] + "_check"))
-        exec("tmp_list = {}".format(sn_dic[sn]))
-        if not dic[line.split(",")[1]] in tmp_list:
-            exec("{}.append(dic[line.split(',')[1]])".format(sn_dic[sn]))
-        num += 1
+        sn = (sn + "." +  line.split(".")[i]).strip(".")
+    if not sn in sn_list:
+        sn_list.append(sn)
+        sn_dic[sn] = "No" + str(sn_num)
+        exec("{} = False".format(sn_dic[sn] + "_check"))
+        exec("{} = []".format(sn_dic[sn]))
+        sn_num += 1
+    sv_dic[line] = sn_dic[sn] + "_" + str(num)
+    exec("{} = False".format(sv_dic[line] + "_check"))
+    exec("tmp_list = {}".format(sn_dic[sn]))
+    if not dic[line] in tmp_list:
+        exec("{}.append(sv_dic[line])".format(sn_dic[sn]))
+    num += 1
 for line in time_list:
     sv = line[0]
     fr = line[1].split("-")[0]
@@ -135,13 +128,13 @@ for line in new_lines:
         sn = (sn + "." +  line[0].split(".")[i]).strip(".")
     now = int(line[1])
     for svs in list:
-        sv_No = dic[svs]
+        sv_No = sv_dic[svs]
         exec("check = {}".format(sv_No + "_check"))
         if check:
             exec("end = {}".format(sv_No + "_end"))
             if int(now) >= int(end):
                 exec("{} = False".format(sv_No + "_check"))
-    sv_No = dic[line[0]]
+    sv_No = sv_dic[line[0]]
     exec("{} = int(line[1])".format(sv_No + "_start"))
     exec("{} = int(line[2])".format(sv_No + "_end"))
     exec("{} = True".format(sv_No + "_check"))
@@ -222,5 +215,4 @@ else:
             else:
                 end = ".\n"
             f.write(i[0]  + ": faulty subnet from " + i[1].split("-")[0] + end)
-
 
